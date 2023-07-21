@@ -1,0 +1,45 @@
+{% extends 'account/base_dashboard.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2>Admin Dashboard</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                <input type="email" class="form-control" value="{{profile.email}}" name="email"
+                       id="exampleFormControlInput1"
+                       placeholder="name@example.com">
+            </div>
+            <div class="mb-3">
+                <label for="first_name" class="form-label">First name</label>
+                <input type="text" class="form-control" name="first_name" value="{{profile.user.first_name}}"
+                       id="first_name" placeholder="first name">
+            </div>
+            <div class="mb-3">
+                <label for="last_name" class="form-label">Last name</label>
+                <input type="text" class="form-control" name="last_name" value="{{profile.user.last_name}}"
+                       id="last_name" placeholder="last name">
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="file" name="image" class="form-control"
+                       value="{%if profile.image%}{{profile.image.url}}{%endif%}" id="image" placeholder="image">
+            </div>
+            <div class="mb-3">
+                <label for="bio" class="form-label">Bio</label>
+                <textarea type="text" name="bio" cols="30" rows="8" class="form-control" id="bio" placeholder="bio">{{profile.bio}}</textarea>
+            </div>
+            <div class="row" style="margin-top:10px">
+                <button class="mt-4 btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

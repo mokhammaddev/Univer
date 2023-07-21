@@ -1,0 +1,22 @@
+{% extends 'account/base_dashboard.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    {% if courses %}
+    {% for course in courses %}
+    <div class="col-md-3">
+        <div class="card" style="width: 18rem;">
+            <img src="{{course.course.image.url}}" width="150%" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{course.course.title}}</h5>
+                <p class="card-text">{{course.course.body|safe|truncatewords:"20"}}</p>
+                <a href="{% url 'course:detail' course.id %}" class="btn btn-primary">Go course</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h3>No courses yet</h3>
+    {% endif %}
+</div>
+{% endblock %}
